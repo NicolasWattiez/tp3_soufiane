@@ -1,0 +1,52 @@
+version: "3.7"
+services:
+  master:
+    image: alpine:latest
+    container_name: master01
+    hostname: master01
+    stdin_open: true
+    tty: true
+    command : >
+      /bin/sh -c "apk update
+      &&  apk add ansible openssh-server openssh
+      && mkdir /etc/ansible
+      && /bin/sh"
+    volumes:
+      - ansible_vol:/var/ans
+
+  server1:
+    links:
+      - master
+    image: myserver
+    container_name: server1
+    hostname: server1
+    stdin_open: true
+    tty: true
+    command : >
+      bash -c "/usr/sbin/sshd -D"
+    expose:
+      - 22
+    ports:
+      - 8042:80
+    volumes:
+     - ansible_vol:/var/ans
+
+  server2:
+    links:
+      - master
+    image: myserver
+    container_name: server2
+    hostname: server2
+    stdin_open: true
+    tty: true
+    command : >
+      bash -c "/usr/sbin/sshd -D"
+    expose:
+      - 22
+    ports:
+      - 8043:80
+    volumes:
+     - ansible_vol:/var/ans
+
+volumes:
+  ansible_vol:

@@ -1,0 +1,16 @@
+---
+- hosts: target
+  tasks:
+  - name: install apache2 haproxy prometheus
+    apt:
+      name:
+        - apache2
+        - haproxy
+        - prometheus
+      state: present
+      update_cache: yes
+  tasks:
+  - name: ansible create directory example
+    file:
+      path: /tmp/wattiez
+      state: directory
