@@ -9,7 +9,6 @@
         - prometheus
       state: present
       update_cache: yes
-  tasks:
   - name: ansible create directory example
     file:
       path: /tmp/wattiez

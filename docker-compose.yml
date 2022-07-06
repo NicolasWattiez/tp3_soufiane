@@ -27,7 +27,8 @@ services:
     expose:
       - 22
     ports:
-      - 8042:80
+      - 8042:8080
+      - 8043:80
     volumes:
      - ansible_vol:/var/ans
 
@@ -44,7 +45,8 @@ services:
     expose:
       - 22
     ports:
-      - 8043:80
+      - 8052:8080
+      - 8053:80
     volumes:
      - ansible_vol:/var/ans
 
