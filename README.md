@@ -8,7 +8,7 @@ docker-compose up -d
 
 ## Copier les fichier utiles dans les conteneurs master
 
-Copiet le contenu du dossier ansible, src et bdd dans le conteneur master : 
+Copier le contenu du dossier ansible dans le conteneur master : 
 ```
 docker cp ansible/. master01:/etc/ansible/
 
@@ -20,7 +20,7 @@ __1) Connexion au master__
 ```
 docker exec -it master01 sh
 ```
-Vous êtes désormais connecté dans le master, nous allons maintenant connecter le master aux 2 hôtes via ssh 
+Vous êtes désormais connecté dans le master, nous allons configurer la connexion ssh afin de pouvoir lancer le playbook plus tard
 
 __2) Connexion en SSH :__ effectuer les commandes ci-dessous dans le master, une par une : (les deux dernières étapes sont là pour s'assurer que la clé ssh ait bien été ajoutée)
 
@@ -38,7 +38,7 @@ ssh-copy-id root@dbubuntu
 ssh-copy-id root@appubuntu
 ```
 
-__4) Lancement du playbook:__
+__4) Lancement du playbook:__ Enfin, on peut lancer le playbook afin qu'il aille installer apache, haproxy et prometheus
 
 ```
 ansible-playbook /etc/ansible/myplaybook.yml
