@@ -11,7 +11,7 @@ docker-compose up -d
 Copier le contenu du dossier ansible dans le conteneur master : 
 ```
 docker cp ansible/. master01:/etc/ansible/
-
+```
 
 ## Configuration des cibles
 
